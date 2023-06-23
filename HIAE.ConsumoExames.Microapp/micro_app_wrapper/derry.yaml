@@ -1,0 +1,18 @@
+
+reload:
+  - clear
+  - cd ../ && rm pubspec.lock
+  - cd ../ && flutter clean
+  - cd ../ && flutter pub get
+  - cd micro_app_wrapper && rm pubspec.lock
+  - cd micro_app_wrapper && flutter clean
+  - cd micro_app_wrapper && flutter pub get
+
+tests:
+  - $test --no-pub --coverage --test-randomize-ordering-seed random
+  - genhtml coverage/lcov.info -o coverage/html  
+
+format:
+  - flutter format .
+  
+code-metrics: dart run dart_code_metrics:metrics lib --reporter=html  

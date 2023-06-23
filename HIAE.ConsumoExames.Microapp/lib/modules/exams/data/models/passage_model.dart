@@ -1,0 +1,58 @@
+import '../../domain/entities/passage_entity.dart';
+
+class PassageModel extends PassageEntity {
+  const PassageModel({
+    required DateTime passageDate,
+    required int medicalRecords,
+    required String patientGender,
+    required DateTime patientDob,
+    required bool blocked,
+    required bool medicalRecordsBlocked,
+    required String? id,
+    required String? passageNumber,
+    required String? type,
+    required String? place,
+    required String? patientName,
+    required String? doctorAdmName,
+    required String? doctorAdmIdentity,
+    required String? room,
+    required String? passport,
+    required String? identity,
+  }) : super(
+          id: id,
+          passageNumber: passageNumber,
+          passageDate: passageDate,
+          type: type,
+          place: place,
+          medicalRecords: medicalRecords,
+          patientName: patientName,
+          patientGender: patientGender,
+          patientDob: patientDob,
+          doctorAdmName: doctorAdmName,
+          doctorAdmIdentity: doctorAdmIdentity,
+          room: room,
+          passport: passport,
+          identity: identity,
+          medicalRecordsBlocked: medicalRecordsBlocked,
+          blocked: blocked,
+        );
+
+  factory PassageModel.fromMap(Map<String, dynamic> map) => PassageModel(
+        id: map['id'],
+        passageNumber: map['passageNumber'],
+        passageDate: DateTime.parse(map['passageDate']),
+        type: map['type'],
+        place: map['place'],
+        medicalRecords: map['medicalRecords'],
+        patientName: map['patientName'],
+        patientGender: map['patientGender'],
+        patientDob: DateTime.parse(map['patientDob']),
+        doctorAdmName: map['doctorAdmName'],
+        doctorAdmIdentity: map['doctorAdmIdentity'],
+        room: map['room'],
+        passport: map['passport'],
+        identity: map['identity'],
+        blocked: map['blocked'] ?? false,
+        medicalRecordsBlocked: map['medicalRecordsBlocked'] ?? false,
+      );
+}

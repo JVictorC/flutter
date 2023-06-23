@@ -1,0 +1,33 @@
+reload-fvm:
+  - clear
+  - rm -rf pubspec.lock
+  - fvm flutter clean
+  - fvm flutter pub get
+  - cd micro_app_wrapper && rm -rf pubspec.lock
+  - cd micro_app_wrapper && fvm flutter clean
+  - cd micro_app_wrapper && fvm flutter pub get
+  - rm -rf micro_app_wrapper/ios/Podfile.lock
+
+reload:
+  - clear
+  - rm -rf pubspec.lock
+  - flutter clean
+  - flutter pub get
+  - cd micro_app_wrapper && rm -rf pubspec.lock
+  - cd micro_app_wrapper && flutter clean
+  - cd micro_app_wrapper && flutter pub get
+  - rm -rf micro_app_wrapper/ios/Podfile.lock
+
+tests:
+  - fvm flutter test --no-pub --coverage --test-randomize-ordering-seed random
+  - genhtml coverage/lcov.info -o coverage/html
+  - open coverage/html/index.html
+
+tests-wd:
+  - flutter test --no-pub --coverage --test-randomize-ordering-seed random
+  - C:\Strawberry\perl\bin\perl.exe C:/Users/guilherme.pereira/Documents/einstein/HIAE.ConsumoExames.Microapp/coverage/lcov.info -o C:/Users/guilherme.pereira/Documents/einstein/HIAE.ConsumoExames.Microapp/coverage/html
+  - coverage/index.html
+
+metrics:
+  - flutter pub run dart_code_metrics:metrics analyze lib -r html
+  - open metrics/index.html
