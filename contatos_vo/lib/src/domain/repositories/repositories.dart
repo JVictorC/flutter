@@ -1,0 +1,1 @@
+export './get_all_contact_repository.dart';
